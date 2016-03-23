@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Temporary install prefix
+WINDIR=${HOME}/.wine/drive_c/qucs-win32-bin
+
+# Set QTDIR
+export QT4DIR=${HOME}/.wine/drive_c/Qt/4.8.6
+
+export AR="wine ar.exe"
+export AS="wine as.exe"
+export CXX="wine g++.exe"
+export CC="wine gcc.exe"
+export LD="wine ld.exe"
+export DLLTOOL="wine dlltool.exe"
+export NM="wine nm.exe"
+export OBJDUMP="wine objdump.exe"
+export RANLIB="wine ranlib.exe"
+export STRIP="wine strip.exe"
+export WINDRES="wine windres.exe"
+
+echo "Configuring for i386-MinGW32 cross ..."
+
+# no need for triplets with mingw-w64?
+# http://sourceforge.net/apps/trac/mingw-w64/wiki/TypeTriplets
+
+./configure --prefix=${WINDIR} --target=i386-mingw32 --host=i386-mingw32 --build=i586-linux --program-prefix="" --disable-dependency-tracking
+
+
