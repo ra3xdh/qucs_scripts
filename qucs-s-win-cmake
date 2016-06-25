@@ -1,0 +1,5 @@
+#!/bin/sh
+
+wine cmake.exe -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C://qucs-win32-bin -DWITH_SPICE=ON
+wine mingw32-make.exe
+

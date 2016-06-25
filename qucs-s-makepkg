@@ -1,0 +1,28 @@
+#!/bin/sh
+
+TMP=/tmp
+
+cd $TMP
+
+git clone -b qucs-s-standalone /home/vvk/qucs
+
+cd qucs
+rm -rf .git
+rm -rf qucs-core
+
+VERSION=`cat VERSION`
+TARBALL=qucs-${VERSION}.tar.gz
+
+mv qucs qucs-$VERSION
+
+cd qucs-$VERSION
+
+sed -i -e '1 i\SET\(WITH_SPICE ON\)' CMakeLists.txt
+sed -i -e '1 i\SET\(CMAKE_BUILD_TYPE Release\)' CMakeLists.txt
+
+cd ..
+tar cvfz $TARBALL qucs-$VERSION
+
+mv $TARBALL $TMP
+echo "Qucs tarball is: $TMP/$TARBALL"
+
