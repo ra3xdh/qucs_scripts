@@ -1,10 +1,14 @@
 #!/bin/sh
 
 TMP=/tmp
+BUILDDIR=qucsbld
 
 cd $TMP
+mkdir -p $BUILDDIR
+cd $BUILDDIR
 
-git clone -b qucs-s-standalone /home/vvk/qucs
+git clone -b qucs-s-standalone https://github.com/ra3xdh/qucs
+
 
 cd qucs
 rm -rf .git
@@ -20,9 +24,23 @@ cd qucs-$VERSION
 sed -i -e '1 i\SET\(WITH_SPICE ON\)' CMakeLists.txt
 sed -i -e '1 i\SET\(CMAKE_BUILD_TYPE Release\)' CMakeLists.txt
 
+rm -rf qucs-attenuator
+rm -rf qucs-rescodes
+rm -rf qucs-transcalc
+rm -rf qucs-edit
+rm -rf qucs-filter-v2
+rm -rf examples 
+mv ../examples .
+
+sed -i -e 's/\"\.\.\/examples\"/\"examples\"/g' CMakeLists.txt
+
 cd ..
 tar cvfz $TARBALL qucs-$VERSION
 
+rm $TMP/$TARBALL
 mv $TARBALL $TMP
 echo "Qucs tarball is: $TMP/$TARBALL"
+
+cd $TMP
+rm -rf $BUILDDIR
 
