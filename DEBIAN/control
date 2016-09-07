@@ -1,0 +1,9 @@
+Package: qucs-s
+Version: 0.0.19S-RC7
+Section: electronics
+Architecture: amd64
+Depends: libc6, ngspice, libqtcore4, libqt4-qt3support
+Maintainer: Vadim Kuznetsov <ra3xdh@gmail.com>
+Description: Quite Universal Circuit Simulator with SPICE (Qucs-S) 
+ is Qucs extension that allows to use various SPICE simulators
+ as the default simulator for Qucs.
