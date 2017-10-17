@@ -1,4 +1,4 @@
-Name:	qucs	
+Name:	qucs-s	
 Version: 0.0.19S	
 Release:	1%{?dist}
 Summary:	Qucs-S is unified GUI for SPICe and non-SPICE circuit simulators
@@ -15,11 +15,11 @@ Requires:	qt
 Qucs-S provides an unified GUI, circuit capture, and component libraries to launch SPICE circuit simulators like Ngspice, Xyce, and SpiceOpus. It also supports non-SPICE simulators like Qucsator.
 
 %prep
-%setup -q
+%setup -n qucs-0.0.19S -q
 
 
 %build
-cmake -DWITH_SPICE=ON -DCMAKE_INSTALL_PREFIX=%{_prefix}
+cmake -DCMAKE_BUILD_TYPE=MinSizeRel -DWITH_SPICE=ON -DCMAKE_INSTALL_PREFIX=%{_prefix}
 make %{?_smp_mflags}
 
 
@@ -30,16 +30,17 @@ make %{?_smp_mflags}
 rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root,-)
+
 %attr(0755,root,root) %{_bindir}/qucs-s
 %attr(0755,root,root) %{_bindir}/qucs-sfilter
 %attr(0755,root,root) %{_bindir}/qucs-sactivefilter
 %attr(0755,root,root) %{_bindir}/qucs-slib
 
-%attr(0644,root,root) %{_datadir}/qucs-s
-%attr(0644,root,root) %{_datadir}/applications
-%attr(0644,root,root) %{_datadir}/icons
 %doc %{_datadir}/man
+
+%{_datadir}/qucs-s
+%{_datadir}/applications
+%{_datadir}/icons
 
 
 %changelog
