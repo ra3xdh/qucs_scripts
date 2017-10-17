@@ -8,7 +8,7 @@ License:	GPL
 URL:		https://ra3xdh.github.io/
 Source0:	https://github.com/ra3xdh/qucs/releases/download/0.0.19S/qucs-0.0.19S.tar.gz
 
-BuildRequires:	gcc, gcc-c++, qt, qt-devel
+BuildRequires:	gcc, gcc-c++, qt, qt-devel, cmake
 Requires:	qt
 
 %description
@@ -30,8 +30,20 @@ make %{?_smp_mflags}
 rm -rf %{buildroot}
 
 %files
+%defattr(-,root,root,-)
+%attr(0755,root,root) %{_bindir}/qucs-s
+%attr(0755,root,root) %{_bindir}/qucs-sfilter
+%attr(0755,root,root) %{_bindir}/qucs-sactivefilter
+%attr(0755,root,root) %{_bindir}/qucs-slib
 
+%attr(0644,root,root) %{_datadir}/qucs-s
+%attr(0644,root,root) %{_datadir}/applications
+%attr(0644,root,root) %{_datadir}/icons
+%doc %{_datadir}/man
 
 
 %changelog
+
+* Tue Oct 17 2017 Vadim Kuznetsov <ra3xdh@gmail.com>
+- First version of SPEC
 
