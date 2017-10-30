@@ -11,17 +11,19 @@ git clone https://github.com/ra3xdh/qucs_s
 
 cd qucs_s
 rm -rf .git
+sed -i -e '1 i\SET\(CMAKE_BUILD_TYPE Release\)' CMakeLists.txt
+
 #rm -rf qucs-core
 
 VERSION=`cat VERSION`
 #VERSION=0.0.19
-EXTRAVERSION=S
-TARBALL=qucs-${VERSION}${EXTRAVERSION}.tar.gz
+EXTRAVERSION=
+TARBALL=qucs-s-${VERSION}${EXTRAVERSION}.tar.gz
 
 cd ..
-mv qucs_s qucs-${VERSION}${EXTRAVERSION}
+mv qucs_s qucs-s-${VERSION}${EXTRAVERSION}
 
-tar cvfz $TARBALL qucs-${VERSION}${EXTRAVERSION}
+tar cvfz $TARBALL qucs-s-${VERSION}${EXTRAVERSION}
 
 rm $TMP/$TARBALL
 mv $TARBALL $TMP
