@@ -1,0 +1,36 @@
+app-id: com.github.ra3xdh.qucs-s
+runtime: org.kde.Platform
+runtime-version: '5.15-21.08'
+sdk: org.kde.Sdk
+command: qucs-s
+rename-desktop-file: qucs-s.desktop
+rename-icon: qucs-s
+finish-args:
+  - --device=dri
+  - --filesystem=host
+  - --persist=.qucs
+  - --share=ipc
+  - --share=network
+  - --socket=x11
+modules:
+  - name: qucs-s
+    buildsystem: cmake
+    sources:
+      - type: archive
+        url: https://github.com/ra3xdh/qucs_s/releases/download/0.0.23/qucs-s-0.0.23.tar.gz
+        sha256: 6d2ba31d471cbd05fbc799e09b88f1bd4351cfed228883944968c771463e9376
+  - name: ngspice
+    build-options:
+        strip: true
+    config-opts:
+        - --enable-xspice
+        - --enable-cider
+        - --enable-oldapps
+        - --enable-openmp
+        - --without-x
+    sources:
+        - type: git
+          url: https://git.code.sf.net/p/ngspice/ngspice
+          tag: ngspice-35
+          commit: 51cc21de1637d1abca1b361b756784e69a28cf76
+
