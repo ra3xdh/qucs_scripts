@@ -1,0 +1,29 @@
+app: Qucs-S
+
+build:
+  packages:
+    - linuxdeploy
+    - linuxdeploy-plugin-qt
+    - gcc-c++
+    - cmake
+    - cmake(Qt5Svg)
+    - cmake(Qt5Core)
+    - cmake(Qt5Gui)
+    - cmake(Qt5Widgets)
+    - cmake(Qt5Script)
+    - cmake(Qt5Svg)
+    - cmake(Qt5Xml)
+    - cmake(Qt5LinguistTools)
+    - cmake(Qt5PrintSupport)
+    - hicolor-icon-theme
+    
+
+script:
+  - cd $BUILD_SOURCE_DIR
+  - tar -xf *.tar.gz
+  - cd $(ls |grep tar.gz | sed s/.tar.gz//)
+  - cmake -DCMAKE_INSTALL_PREFIX=/usr .
+  - make -j $(nproc)
+  - make install DESTDIR=$BUILD_APPDIR
+  - linuxdeploy --appdir=$BUILD_APPDIR --executable=$BUILD_APPDIR/usr/bin/qucs-s --icon-file=$BUILD_APPDIR/usr/share/icons/hicolor/256x256/apps/qucs-s.png --desktop-file=$BUILD_APPDIR/usr/share/applications/qucs-s.desktop --plugin qt
+
