@@ -6,7 +6,7 @@ BUILDDIR=/qucsbld
 mkdir $TMP$BUILDDIR
 cd $TMP$BUILDDIR
 
-git clone https://github.com/ra3xdh/qucs_s
+git clone -b master https://github.com/ra3xdh/qucs_s
 
 
 cd qucs_s
