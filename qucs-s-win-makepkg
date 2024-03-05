@@ -1,0 +1,44 @@
+#!/bin/sh
+
+TMP=/tmp
+BUILDDIR=/qucsbld
+INSTALLDIR=$TMP/qucs_s_win64
+
+MXE_ROOT=/usr/lib/mxe/
+MXE_TARGET=x86_64-w64-mingw32.shared
+MXE_CMAKE=$MXE_TARGET-cmake
+MXE_DEPLOYQT=$HOME/mxedeployqt/mxedeployqt
+
+mkdir $TMP$BUILDDIR
+cd $TMP$BUILDDIR
+
+git clone -b master https://github.com/ra3xdh/qucs_s
+
+
+cd qucs_s
+rm -rf .git
+#sed -i -e '1 i\SET\(CMAKE_BUILD_TYPE Release\)' CMakeLists.txt
+
+#rm -rf qucs-core
+
+VERSION=`cat VERSION|tr '.' '_'`
+EXTRAVERSION=
+ZIP=qucs_s_win64_portable_$VERSION.zip
+
+mkdir build
+cd build
+$MXE_ROOT/usr/bin/$MXE_CMAKE .. -DCMAKE_INSTALL_PREFIX=$INSTALLDIR -DCMAKE_BUILD_TYPE=Release
+make -j4
+make install
+
+
+cd $TMP
+$MXE_DEPLOYQT --mxepath $MXE_ROOT --mxetarget $MXE_TARGET $INSTALLDIR/bin
+
+zip -r $ZIP qucs_s_win64/*
+
+
+echo "Qucs Windows portable package is: $TMP/$ZIP"
+
+rm -rf $TMP/$BUILDDIR
+
