@@ -21,12 +21,12 @@
 ;
 
 
-#define RELEASE "0.0.19S"
-#define BASENAME "qucs"
+#define RELEASE "24.1.0"
+#define BASENAME "qucs-s"
 #define APPNAME "Qucs-S"
-#define APPVERNAME "Quite Universal Circuit Simulator 0.0.19S"
-#define URL "http://qucs.sourceforge.net"
-#define TREE "c:\qucs-win32-bin\"
+#define APPVERNAME "Quite Universal Circuit Simulator 24.1.0"
+#define URL "https://ra3xdh.github.io/"
+#define TREE "c:\qucs_s_win64\"
 
 [Setup]
 AppName={# APPNAME}
@@ -38,7 +38,7 @@ AppUpdatesURL={# URL}
 DefaultDirName={pf}\Qucs-S
 DefaultGroupName=Qucs-S
 AllowNoIcons=yes
-LicenseFile={# TREE}\gpl.rtf
+LicenseFile={# TREE}\misc\gpl.rtf
 OutputBaseFilename={# BASENAME}-{# RELEASE}-setup
 Compression=lzma
 SolidCompression=yes
@@ -56,6 +56,7 @@ Source: "{# TREE}\bin\*"; DestDir: "{app}\bin"; Flags: ignoreversion recursesubd
 ; Source: "{# TREE}\include\*"; DestDir: "{app}\include"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; Source: "{# TREE}\lib\*"; DestDir: "{app}\lib"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{# TREE}\misc\*"; DestDir: "{app}\misc"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{# TREE}\lib\*"; DestDir: "{app}\lib"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{# TREE}\share\*"; DestDir: "{app}\share"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]

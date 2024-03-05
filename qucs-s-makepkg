@@ -2,11 +2,12 @@
 
 TMP=/tmp
 BUILDDIR=/qucsbld
+BRANCH=master
 
 mkdir $TMP$BUILDDIR
 cd $TMP$BUILDDIR
 
-git clone -b master https://github.com/ra3xdh/qucs_s
+git clone -b $BRANCH https://github.com/ra3xdh/qucs_s
 
 
 cd qucs_s
