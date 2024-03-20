@@ -11,6 +11,8 @@ git clone -b $BRANCH https://github.com/ra3xdh/qucs_s
 
 
 cd qucs_s
+git submodule init
+git submodule update
 rm -rf .git
 sed -i -e '1 i\SET\(CMAKE_BUILD_TYPE Release\)' CMakeLists.txt
 
